@@ -3,27 +3,28 @@ import { useContext, useState } from "react";
 import { MovieContext } from "./Search";
 const MovieProvider = () => {
   const movieData = useContext(MovieContext);
-  console.log(movieData);
   return (
-    <div className="movie">
+    <>
       {movieData.titles &&
         movieData.titles.map((movieItem, i) => {
           return (
-            <>
-              <div className="movie">
-                <div>
-                  <span style={{ color: "white" }}>
-                    {movieItem.primaryTitle}
-                  </span>
-                </div>
-                <div>
-                  <img src={movieItem.primaryImage.url} />
-                </div>
+            <div className="movie">
+              <div></div>
+              <div>
+                <img
+                  src={
+                    movieItem.primaryImage ? movieItem.primaryImage.url : "#"
+                  }
+                />
               </div>
-            </>
+              <div>
+                <span>{movieItem.primaryTitle} </span>
+                <h3>{movieItem.originalTitle}</h3>
+              </div>
+            </div>
           );
         })}
-    </div>
+    </>
   );
 };
 
